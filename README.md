@@ -18,3 +18,15 @@
     <li>You can view all tokens created on blockchain by <strong>GET</strong> request to <code>/item/{item_id}</code> endpoint.</li>
     <li>You can view all monsters owned by current user by <strong>GET</strong> request to <code>/monsters</code> endpoint.</li>
 </ul>
+
+## Smart Contract
+
+- [GameItems](https://explorer-mumbai.maticvigil.com/address/0xc57321FA436BA8c3B11831Ca87f7d0b8D757bC0e/transactions) - It is an ERC1155 token contract with Biconomy integration.
+
+
+
+## Tech Stack
+
+- [Fast API](https://fastapi.tiangolo.com/) - FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.6+
+- [Unity](https://unity.com/) - Unity is a cross-platform game engine developed by Unity Technologies
+- [Matic](https://matic.network/) - Matic Network is is providing high scalability to cryptocurrencies
