@@ -8,7 +8,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-build/
 develop-eggs/
 dist/
 downloads/
@@ -127,3 +126,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.idea/
+node_modules/
+
+# heroku
+contracts/
+migrations/
+test/
+package.json
+package-lock.json
+sql_app.db
+truffle-config.js
