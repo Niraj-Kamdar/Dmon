@@ -1,0 +1,29 @@
+{
+  "name": "dmon",
+  "version": "1.0.0",
+  "description": "dmon game",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@opengsn/gsn": "^2.1.0",
+    "@openzeppelin/contracts": "^3.4.0",
+    "@truffle/hdwallet-provider": "^1.2.2",
+    "node-env-file": "^0.1.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Niraj-Kamdar/Dmon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Niraj-Kamdar/Dmon/issues"
+  },
+  "homepage": "https://github.com/Niraj-Kamdar/Dmon#readme"
+}

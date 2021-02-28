@@ -34,7 +34,7 @@ async def get_current_user(db: Session = Depends(get_db),
     db_user = get_db_user(db, username=username)
     if db_user is None:
         raise credentials_exception
-    user = schemas.UserAccount(**db_user)
+    user = schemas.UserAccount(key=key, **db_user.dict())
     return user
 
 
@@ -57,15 +57,29 @@ def authenticate_user(db: Session, username: str, password: str):
     key = get_key(password, user.hashed_key)
     if not key:
         return False
-    return {username: user.username, key: key}
+    return {"username": user.username, "key": key}
 
 
 def create_db_user(db: Session, user: schemas.UserCreate):
     dict_user = user.dict(exclude={"password"})
-    dict_user["hashed_key"] = create_account(user.password)
+    new_wallet = create_account(user.password)
+    dict_user["hashed_key"] = new_wallet.key
+    dict_user["address"] = new_wallet.address
     db_user = models.User(**dict_user)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
     return db_user
 
+
+def create_db_monster(db: Session, monster: schemas.MonsterCreate):
+    db_monster = models.Monster(**monster.dict())
+    db.add(db_monster)
+    db.commit()
+    db.refresh(db_monster)
+    return db_monster
+
+
+def get_db_monster(db: Session, monster_id: int):
+    return db.query(
+        models.Monster).filter(models.Monster.id == monster_id).first()
