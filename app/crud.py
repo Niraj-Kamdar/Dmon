@@ -1,15 +1,9 @@
-from fastapi import Depends
-from fastapi import HTTPException
-from fastapi import status
+from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
-from jose import jwt
-from jose import JWTError
+from jose import jwt, JWTError
 from sqlalchemy.orm import Session
 
-from . import ALGORITHM
-from . import models
-from . import schemas
-from . import SECRET_KEY
+from . import ALGORITHM, models, schemas, SECRET_KEY
 from .utils import get_db, get_key
 from .web3utils import create_account
 
@@ -19,9 +13,9 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 async def get_current_user(db: Session = Depends(get_db),
                            token: str = Depends(oauth2_scheme)):
     credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+            headers={"WWW-Authenticate": "Bearer"},
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
@@ -47,7 +41,7 @@ async def get_current_active_user(
 
 def get_db_user(db: Session, username: str):
     return db.query(
-        models.User).filter(models.User.username == username).first()
+            models.User).filter(models.User.username == username).first()
 
 
 def authenticate_user(db: Session, username: str, password: str):
@@ -82,4 +76,4 @@ def create_db_monster(db: Session, monster: schemas.MonsterCreate):
 
 def get_db_monster(db: Session, monster_id: int):
     return db.query(
-        models.Monster).filter(models.Monster.id == monster_id).first()
+            models.Monster).filter(models.Monster.id == monster_id).first()

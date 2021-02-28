@@ -10,7 +10,7 @@ contract GameItems is ERC1155, Ownable, BaseRelayRecipient {
     uint public constant GToken = 0;
     uint public totalTokenTypes = 1;
 
-    mapping (address => uint[]) public userMonsters;
+    mapping(address => uint[]) public userMonsters;
 
     event MonsterCreated(address indexed recipient, uint MonsterId, string MonsterName);
 
@@ -26,7 +26,7 @@ contract GameItems is ERC1155, Ownable, BaseRelayRecipient {
         totalTokenTypes++;
     }
 
-    function getUserMonsters(address user) public returns(uint[] memory) {
+    function getUserMonsters(address user) public returns (uint[] memory) {
         return userMonsters[user];
     }
 

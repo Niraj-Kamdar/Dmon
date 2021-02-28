@@ -1,5 +1,4 @@
 import os
-import re
 from datetime import timedelta
 
 import aiofiles
@@ -8,8 +7,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
-from . import ACCESS_TOKEN_EXPIRE_MINUTES, APP_PATH, crud, models, schemas
-from . import contract
+from . import ACCESS_TOKEN_EXPIRE_MINUTES, APP_PATH, crud, models, schemas, contract
 from .crud import get_db_monster
 from .database import engine
 from .utils import create_access_token, transform_db_monster_to_monster_view, get_db
@@ -17,8 +15,6 @@ from .utils import create_access_token, transform_db_monster_to_monster_view, ge
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-validate_email = re.compile(
-        r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -102,23 +98,23 @@ async def get_item(item_id: int, db: Session = Depends(get_db)):
         db_monster = get_db_monster(db, item_id)
         return transform_db_monster_to_monster_view(db_monster)
     return JSONResponse(
-        status_code=400,
-        content={"message": f"item_id: {item_id} is invalid!"},
+            status_code=400,
+            content={"message": f"item_id: {item_id} is invalid!"},
     )
 
 
 @app.get(
-    "/monsters",
-    response_model=schemas.UserMonster,
-    responses={
-        400: {
-            "description": "Invalid request body!",
-            "model": schemas.Message
+        "/monsters",
+        response_model=schemas.UserMonster,
+        responses={
+            400: {
+                "description": "Invalid request body!",
+                "model": schemas.Message
+            },
         },
-    },
 )
 async def get_user_monsters(
-    db: Session = Depends(get_db),
-    current_user: schemas.UserAccount = Depends(crud.get_current_active_user)
+        db: Session = Depends(get_db),
+        current_user: schemas.UserAccount = Depends(crud.get_current_active_user)
 ):
     return contract.get_user_monsters(db, current_user)

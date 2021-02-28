@@ -8,7 +8,7 @@ import "../contracts/GameItems.sol";
 contract TestGameItems {
     function testInitialBalanceUsingDeployedContract() public {
         GameItems gameItems = GameItems(DeployedAddresses.GameItems());
-        uint expected = 10**18;
+        uint expected = 10 ** 18;
         Assert.equal(gameItems.balanceOf(tx.origin, 0), expected, "Owner should have 10**18 GToken initially");
     }
 }

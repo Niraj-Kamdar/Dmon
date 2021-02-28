@@ -1,13 +1,12 @@
 import os
 
-from sqlalchemy import create_engine
-from sqlalchemy import inspect
+from sqlalchemy import create_engine, inspect
 from sqlalchemy.ext.declarative import as_declarative
 from sqlalchemy.orm import sessionmaker
 
 SQLALCHEMY_DATABASE_URL = (
-    os.getenv("DATABASE_URL") or
-    "sqlite:///./sql_app.db"
+        os.getenv("DATABASE_URL") or
+        "sqlite:///./sql_app.db"
 )  # or "postgresql://postgres:postgres@postgres.cqfc6cg6hwm4.us-west-2.rds.amazonaws.com:5432/postgres"
 
 connect_args = {}

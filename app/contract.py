@@ -23,8 +23,8 @@ def create_monster(db: Session, receiver: str):
     # Blockchain stuffs
     nonce = web3.eth.getTransactionCount(OWNER_ADDRESS)
     tx = _contract.functions.createMonster(
-        receiver,
-        random_monster["name"]
+            receiver,
+            random_monster["name"]
     ).buildTransaction({'nonce': nonce, "from": OWNER_ADDRESS})
     signed_tx = web3.eth.account.signTransaction(tx, os.getenv("PRIVATE_KEY"))
     tx_hash = web3.eth.sendRawTransaction(signed_tx.rawTransaction)

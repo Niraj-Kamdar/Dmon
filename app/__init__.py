@@ -1,8 +1,8 @@
 import os
 
 SECRET_KEY = (
-    os.getenv("SECRET_KEY")
-    or "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7")
+        os.getenv("SECRET_KEY")
+        or "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7")
 RPC_URL = os.getenv("RPC_URL") or "https://rpc-mumbai.matic.today"
 CONTRACT_ADDRESS = "0xc57321FA436BA8c3B11831Ca87f7d0b8D757bC0e"
 OWNER_ADDRESS = "0x29D9C4405A72ffa26eB13218b7C29F98F2B21aD0"
