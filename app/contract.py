@@ -11,7 +11,7 @@ from .utils import transform_raw_monster_to_db_monster, transform_db_monster_to_
 from .web3utils import web3
 
 address = CONTRACT_ADDRESS
-with open(os.path.join(APP_PATH, "..", "build", "contracts", "GameItems.json"), "r") as f:
+with open(os.path.join(APP_PATH, "static", "GameItems.json"), "r") as f:
     contractData = json.load(f)
     abi = contractData["abi"]
     _contract = web3.eth.contract(address=address, abi=abi)
